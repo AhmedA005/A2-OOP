@@ -22,14 +22,20 @@ bool  operator==(domino d, domino d1)
 
 bool FormsDominoChain(vector <domino> v )
 {
+    int x = 0;
+    if(v.size()>1) {
+        for (int i = 0; i < v.size(); ++i) {
+            if (v[0] == v[i]){
+                v.erase(v.begin());
+                x++;
+            }
+        }
+        if(x == 0)
+            return false;
+        else if(v.size()==1)
+            return true;
+        else
+            return true*FormsDominoChain(v);
 
-   int x= v.size();
-   if(v[x-2]==v[x-1]){
-       v.pop_back();
-       FormsDominoChain(v);
-   }
-   else
-       return false;
-
-    return true;
+    }
 }
