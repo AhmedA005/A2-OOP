@@ -16,7 +16,10 @@ int main(){
         if(a==1) {
             string name;
             int score;
-            cin >> name >> score;
+            cout<<"Enter the name of the player"<<endl;
+            cin >> name;
+            cout<<"Enter the score of the player"<<endl;
+            cin>>score;
             if (v.size()==10) {
                 if(score>v[9].first) {
                     v.pop_back();
@@ -28,7 +31,7 @@ int main(){
         }
         else if(a==2) {
             for (int i = 0; i < v.size(); i++)
-                cout<<v[i].second<<" "<<v[i].first<<endl;
+                cout<<v[i].second<<": "<<v[i].first<<endl;
         }
         else if(a==3){
             string s;
@@ -36,7 +39,7 @@ int main(){
             bool flag = true;
             for(int i=0;i<v.size();i++) {
                 if (s == v[i].second) {
-                    cout << v[i].first << endl;
+                    cout <<v[i].second<<": "<<v[i].first<< endl;
                     flag = false;
                     break;
                 }
