@@ -14,8 +14,10 @@ using namespace std;
 
 
 int main(){
+    cout<<"enter the mumber of dominos: ";
     int n;
     cin>>n;
+    cout<<"enter the number of left dots and right dots for each domino: ";
 vector <domino> v;
     for (int i = 0; i < n; ++i) {
         domino d;
@@ -23,14 +25,10 @@ vector <domino> v;
         v.push_back(d);
     }
     if(FormsDominoChain(v)){
-
-        for (int i = 0; i < n-1; ++i) {
-            cout<<v[i]<<" - ";
-        }
-        cout<<v[v.size()-1];
+        cout<<"True"<<endl;
     }
     else
-        cout<<"dose not form a domino chain";
-
+        cout<<"false"<<endl;
+    
     return 0;
 }
