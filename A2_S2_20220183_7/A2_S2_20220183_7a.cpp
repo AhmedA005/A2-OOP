@@ -1,5 +1,5 @@
 // File: A2_S2_20220183_7.cpp
-// Purpose: see if the dominos forms a dominochain or not in a recursive way
+// Purpose: see if the dominos forms a domino chain or not in a recursive way
 // Author: Abdelrahman Wael
 // Section: S1,2
 // ID: 20220183
@@ -14,7 +14,7 @@ using namespace std;
 
 
 int main(){
-    cout<<"enter the mumber of dominos: ";
+    cout<<"enter the number of dominos: ";
     int n;
     cin>>n;
     cout<<"enter the number of left dots and right dots for each domino: ";
