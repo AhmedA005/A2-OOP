@@ -4,7 +4,14 @@
 #include "domino.h"
 using namespace std;
 
-domino::domino(int left , int right){
+domino ::domino()
+    {
+        leftdots = 0;
+        rightdots = 0;
+    }
+
+domino::domino(int left , int right)
+{
     leftdots = left;
     rightdots = right;
 }
