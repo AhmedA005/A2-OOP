@@ -17,7 +17,7 @@ int main(){
     cout<<"enter the number of dominos: ";
     int n;
     cin>>n;
-    cout<<"enter the number of left dots and right dots for each domino: ";
+    cout<<"enter the number of left dots and right dots for each domino: \n";
 vector <domino> v;
     for (int i = 0; i < n; ++i) {
         domino d;
