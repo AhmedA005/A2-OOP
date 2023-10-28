@@ -17,7 +17,7 @@ ostream & operator<<(ostream & out,domino & d)
 
 bool  operator==(domino d, domino d1)
 {
-    return (d.rightdots==d1.leftdots);
+    return (d.rightdots == d1.leftdots or d.leftdots == d1.rightdots);
 }
 
 bool FormsDominoChain(vector <domino> v )
@@ -30,7 +30,7 @@ bool FormsDominoChain(vector <domino> v )
                 x++;
             }
         }
-        if(x == 0)
+        if(x == 0 and v.size() > 1)
             return false;
         else if(v.size()==1)
             return true;
