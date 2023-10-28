@@ -9,10 +9,7 @@ class domino{
     int leftdots;
     int rightdots;
 public:
-    domino(){
-        leftdots = 0;
-        rightdots = 0;
-    }
+    domino();
     domino(int left , int right);
     friend istream & operator>>(istream & input,domino & d);
     friend ostream & operator<<(ostream & out,domino & d);
