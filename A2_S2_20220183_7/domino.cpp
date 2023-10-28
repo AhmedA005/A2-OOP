@@ -1,7 +1,13 @@
 #include <iostream>
 #include <vector>
+#include <deque>
 #include "domino.h"
 using namespace std;
+
+domino::domino(int left , int right){
+    leftdots = left;
+    rightdots = right;
+}
 
 istream & operator>>(istream & input,domino & d)
 {
