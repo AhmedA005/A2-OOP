@@ -4,7 +4,7 @@
 // Section: S1,2
 // ID: 20220183
 // TA: Maya Ahmed Kamal
-// Date: 29Oct 2023
+// Date: 27 Oct 2023
 
 #include <iostream>
 #include <fstream>
@@ -31,7 +31,9 @@ int main() {
         }
         outfile<<filter(line)<<endl;
     }
-
+    infile.close();
+    outfile.close();
+    return 0;
 }
 
 
@@ -52,6 +54,6 @@ string filter(string word){
             }
         }
     }
-
+censored_table.close();
     return alternative;
 }
