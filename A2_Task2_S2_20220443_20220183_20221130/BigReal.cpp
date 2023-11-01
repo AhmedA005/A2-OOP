@@ -22,3 +22,8 @@ BigReal::BigReal(string realNumber) {
     if (integer.size()==0) integer='0';
     if (fraction.size()==0) fraction='0';
 }
+
+ostream &operator<<(ostream &out, BigReal num) {
+    cout << num.integer << '.' << num.fraction;
+    return out;
+}
