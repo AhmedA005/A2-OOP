@@ -109,3 +109,18 @@ bool BigReal::operator>(BigReal &other) {
     else
         return true;
 }
+bool BigReal::operator>=(BigReal &other) {
+    BigReal one(integer+'.'+fraction);
+    if (one < other)
+        return false;
+    else
+    return true;
+}
+
+bool BigReal::operator<=(BigReal &other) {
+    BigReal one(integer+'.'+fraction);
+    if (one > other)
+        return false;
+    else
+    return true;
+}
