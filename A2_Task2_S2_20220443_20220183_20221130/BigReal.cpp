@@ -27,6 +27,7 @@ ostream &operator<<(ostream &out, BigReal num) {
     out << num.sign << num.integer << '.' << num.fraction;
     return out;
 }
+
 bool BigReal::operator==(BigReal &other) {
     if(sign==other.sign) {
         while (integer.size() > other.integer.size()) {
@@ -48,4 +49,63 @@ bool BigReal::operator==(BigReal &other) {
     }
     else
         return false;
+}
+
+bool BigReal::operator<(BigReal &other) {
+    if(sign == '-' and other.sign == '+')
+        return true;
+    else if(sign == '+' and other.sign == '-')
+        return false;
+
+    while (integer.size() > other.integer.size()){
+        other.integer = '0'+other.integer;
+    }
+    while (integer.size() < other.integer.size()){
+        integer = '0'+integer;
+    }
+    while (fraction.size() > other.fraction.size()){
+        other.fraction += '0';
+    }
+    while (fraction.size() < other.fraction.size()){
+        fraction += '0';
+    }
+    if(integer == other.integer and fraction == other.fraction)
+        return false;
+
+    if(sign == '+' and other.sign == '+'){
+
+        for (int i = 0; i < integer.size(); ++i) {
+            if(integer[i] > other.integer[i])
+                return false;
+        }
+
+        for (int i = 0; i < fraction.size(); ++i) {
+            if(fraction[i] > other.fraction[i])
+                return false;
+        }
+
+    }
+
+    if(sign == '-' and other.sign == '-'){
+
+        for (int i = 0; i < integer.size(); ++i) {
+            if(integer[i] < other.integer[i])
+                return false;
+        }
+
+        for (int i = 0; i < fraction.size(); ++i) {
+            if(fraction[i] < other.fraction[i])
+                return false;
+        }
+
+    }
+    return true;
+}
+
+bool BigReal::operator>(BigReal &other) {
+    BigReal one(integer+'.'+fraction);
+    if(one < other or one == other)
+        return false;
+    else
+        return true;
 }
