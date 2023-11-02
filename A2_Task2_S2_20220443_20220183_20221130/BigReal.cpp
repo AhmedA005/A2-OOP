@@ -27,3 +27,25 @@ ostream &operator<<(ostream &out, BigReal num) {
     out << num.sign << num.integer << '.' << num.fraction;
     return out;
 }
+bool BigReal::operator==(BigReal &other) {
+    if(sign==other.sign) {
+        while (integer.size() > other.integer.size()) {
+            other.integer = '0' + other.integer;
+        }
+        while (integer.size() < other.integer.size()) {
+            integer = '0' + integer;
+        }
+        while (fraction.size() > other.fraction.size()) {
+            other.fraction += '0';
+        }
+        while (fraction.size() < other.fraction.size()) {
+            fraction += '0';
+        }
+        if (integer != other.integer or fraction != other.fraction) {
+            return false;
+        } else
+            return true;
+    }
+    else
+        return false;
+}
