@@ -24,6 +24,6 @@ BigReal::BigReal(string realNumber) {
 }
 
 ostream &operator<<(ostream &out, BigReal num) {
-    cout << num.integer << '.' << num.fraction;
+    cout << num.sign << num.integer << '.' << num.fraction;
     return out;
 }
