@@ -7,6 +7,7 @@ bool BigReal::isValid(string realNumber) {
         return true;
     else return false;
 }
+
 BigReal::BigReal(string realNumber) {
     if (isValid(realNumber)){
         if (realNumber[0]=='-' || realNumber[0]=='+'){
@@ -17,7 +18,10 @@ BigReal::BigReal(string realNumber) {
             sign='+';
         }
         integer=realNumber.substr(0,realNumber.find('.'));
-        fraction=realNumber.substr(integer.size()+1,realNumber.size()-1);
+        if (realNumber.find('.')!=string::npos){
+            fraction=realNumber.substr(integer.size()+1,realNumber.size()-1);
+        }
+        else fraction='0';
     }
     if (integer.size()==0) integer='0';
     if (fraction.size()==0) fraction='0';
