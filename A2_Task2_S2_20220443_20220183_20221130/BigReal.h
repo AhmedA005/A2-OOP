@@ -22,6 +22,8 @@ public:
     bool operator<(BigReal &other);
     bool operator>(BigReal &other);
     bool operator==(BigReal &other);
+    bool operator>=(BigReal &other);
+    bool operator<=(BigReal &other);
 
     friend ostream &operator<<(ostream &out, BigReal num);
     friend istream &operator>>(istream &in, BigReal num);
