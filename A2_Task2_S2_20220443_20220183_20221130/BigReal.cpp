@@ -203,13 +203,26 @@ BigReal BigReal::operator-(BigReal &other) {
     }
 
     if (one > other) {
-        A = one;
-        B = other;
-    } else {
-        A = other;
-        B = one;
-        if (one.sign == '+' and other.sign == '+')
+        if (one.sign == '-' and other.sign == '-'){
+            A = other;
+            B = one;
+            A.sign = '+';
+        }
+        else {
+            A = one;
+            B = other;
+        }
+    }
+    else {
+        if (one.sign == '-' and other.sign == '-'){
+            A = one;
+            B = other;
+        }
+        else {
+            A = other;
+            B = one;
             A.sign = '-';
+        }
     }
     for (int i = 0; i < A.integer.size(); ++i) {
 
