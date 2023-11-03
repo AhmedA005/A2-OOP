@@ -110,8 +110,8 @@ bool BigReal::operator<(BigReal &other) {
 }
 
 bool BigReal::operator>(BigReal &other) {
-    BigReal one(integer + '.' + fraction);
-    if (one < other or one == other)
+    BigReal one(sign+integer+'.'+fraction);
+    if(one < other or one == other)
         return false;
     else
         return true;
