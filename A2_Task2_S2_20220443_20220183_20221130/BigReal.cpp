@@ -171,6 +171,95 @@ BigReal BigReal::operator+(BigReal &other) {
     return sum;
 }
 
-BigReal BigReal::operator-(BigReal &other){
+BigReal BigReal::operator-(BigReal &other) {
+    while (integer.size() > other.integer.size()) {
+        other.integer = '0' + other.integer;
+    }
+    while (integer.size() < other.integer.size()) {
+        integer = '0' + integer;
+    }
+    while (fraction.size() > other.fraction.size()) {
+        other.fraction += '0';
+    }
+    while (fraction.size() < other.fraction.size()) {
+        fraction += '0';
+    }
 
+    BigReal one("0.0");
+    one.sign = sign;
+    one.integer = integer;
+    one.fraction = fraction;
+    BigReal A("0.0"), B("0.0");
+    bool bridge = false;
+
+    if (sign == '+' and other.sign == '-') {
+        other.sign = '+';
+        A = one + other;
+        return A;
+    } else if (sign == '-' and other.sign == '+') {
+        other.sign = '-';
+        A = one + other;
+        return A;
+    }
+
+    if (one > other) {
+        A = one;
+        B = other;
+    } else {
+        A = other;
+        B = one;
+        if (one.sign == '+' and other.sign == '+')
+            A.sign = '-';
+    }
+    for (int i = 0; i < A.integer.size(); ++i) {
+
+        int sub = int(A.integer[i] - '0') - int(B.integer[i] - '0');
+        if (sub < 0) {
+            int val = i;
+            sub += 10;
+            A.integer[i] = (sub + '0');
+            while (A.integer[i - 1] == '0') {
+                A.integer[i - 1] = 9 + '0';
+                i--;
+            }
+            A.integer[i - 1] -= 1;
+            i = val;
+        } else {
+            A.integer[i] = (sub + '0');
+        }
+    }
+
+
+    for (int i = 0; i < A.fraction.size(); ++i) {
+
+        int sub = int(A.fraction[i] - '0') - int(B.fraction[i] - '0');
+        if (sub < 0) {
+            int val = i;
+            sub += 10;
+            A.fraction[i] = (sub + '0');
+            if (i == 0) {
+                bridge = true;
+            } else {
+                while (A.fraction[i - 1] == '0') {
+                    A.fraction[i - 1] = 9 + '0';
+                    i--;
+                }
+                A.fraction[i - 1] -= 1;
+                i = val;
+            }
+        } else {
+            A.fraction[i] = (sub + '0');
+        }
+    }
+
+    if (bridge) {
+        int i = A.integer.size();
+        while (A.integer[i - 1] == '0') {
+            A.integer[i - 1] = 9 + '0';
+            i--;
+        }
+        A.integer[i - 1] -= 1;
+    }
+
+    return A;
 }
