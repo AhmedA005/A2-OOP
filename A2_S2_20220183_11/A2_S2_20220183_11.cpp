@@ -1,5 +1,5 @@
 // File: A2_S2_20220183_11.cpp
-// Purpose: find all the prime numbers up to some upper limit N.
+// Purpose: Compare two files either character by character comparison, or word by word.
 // Author: Abdelrahman Wael
 // Section: S1,2
 // ID: 20220183
@@ -40,6 +40,7 @@ void characters_compare(string f1,string f2) {
     bool identical= true;
     int line_number = 1;
     string line;
+    //check the number of the first different line or if the files are identical
     while(getline(file_1, s1),getline(file_2, s2)){
         line = s1;
         if(s1==s2)
@@ -53,7 +54,7 @@ void characters_compare(string f1,string f2) {
         cout<<"the files are identical";
     else
     {
-        cout<<"the number of the first diffrent line is: "<<line_number<<" and it's content is: "<<line;
+        cout<<"the number of the first different line is: "<<line_number<<" and it's content is: "<<line;
     }
 }
 
@@ -66,11 +67,13 @@ void words_compare(string f1,string f2)
     string dif_word="";
     int line_number = 1;
     bool identical = true;
+    //Repeat the same algorithm for every line
     while(getline(file_1,s1), getline(file_2,s2))
     {
         if(s1==s2)
             line_number++;
         else {
+            //See the first space index. all letters before it is considered one word
             for (int i = 0; i < s1.size(); ++i) {
                 if (s1[i] == ' ') {
                     word1 = s1.substr(0, i);
