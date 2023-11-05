@@ -166,7 +166,15 @@ BigReal BigReal::operator+(BigReal &other) {
             carry = 0;
         }
     } else {
-        //        minus here
+        if (sign == '-') {
+            BigReal A = *this;
+            A.sign = '+';
+            return other - A;
+        } else {
+            BigReal A = other;
+            A.sign = '+';
+            return *this - A;
+        }
     }
     return sum;
 }
