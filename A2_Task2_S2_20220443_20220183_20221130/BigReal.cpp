@@ -198,18 +198,18 @@ BigReal BigReal::operator-(BigReal &other) {
     one.integer = integer;
     one.fraction = fraction;
     BigReal A("0.0"), B("0.0");
-    bool bridge = false;
+    bool bridge = false;//To subtract from the integer part if the fraction is negative
 
-    if (sign == '+' and other.sign == '-') {
+    if (sign == '+' and other.sign == '-') { // Then it is sum operation
         other.sign = '+';
         A = one + other;
         return A;
-    } else if (sign == '-' and other.sign == '+') {
+    } else if (sign == '-' and other.sign == '+') { // Then it is sum operation
         other.sign = '-';
         A = one + other;
         return A;
     }
-
+    //Detecting which number is bigger to sub from and assigning the result's sign
     if (one > other) {
         if (one.sign == '-' and other.sign == '-'){
             A = other;
@@ -232,7 +232,7 @@ BigReal BigReal::operator-(BigReal &other) {
             A.sign = '-';
         }
     }
-    for (int i = 0; i < A.integer.size(); ++i) {
+    for (int i = 0; i < A.integer.size(); ++i) {//Subtracting the integer part
 
         int sub = int(A.integer[i] - '0') - int(B.integer[i] - '0');
         if (sub < 0) {
@@ -251,8 +251,7 @@ BigReal BigReal::operator-(BigReal &other) {
     }
 
 
-    for (int i = 0; i < A.fraction.size(); ++i) {
-
+    for (int i = 0; i < A.fraction.size(); ++i) {//Subracting the fraction part
         int sub = int(A.fraction[i] - '0') - int(B.fraction[i] - '0');
         if (sub < 0) {
             int val = i;
@@ -260,12 +259,19 @@ BigReal BigReal::operator-(BigReal &other) {
             A.fraction[i] = (sub + '0');
             if (i == 0) {
                 bridge = true;
-            } else {
+            }
+            else {
                 while (A.fraction[i - 1] == '0') {
                     A.fraction[i - 1] = 9 + '0';
                     i--;
                 }
-                A.fraction[i - 1] -= 1;
+                if(i==0){
+                    A.fraction[i] = 9 + '0';
+                    bridge = true;
+                }
+                else {
+                    A.fraction[i - 1] -= 1;
+                }
                 i = val;
             }
         } else {
