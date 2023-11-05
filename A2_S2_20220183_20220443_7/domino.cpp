@@ -1,6 +1,4 @@
 #include <iostream>
-#include <vector>
-#include <deque>
 #include "domino.h"
 using namespace std;
 deque<domino>ans;
