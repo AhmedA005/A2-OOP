@@ -15,19 +15,19 @@ domino::domino(int left , int right)
     leftdots = left;
     rightdots = right;
 }
-
+//overloading the operator >> to take the dominos as input from the user
 istream & operator>>(istream & input,domino & d)
 {
     input >> d.leftdots >>d.rightdots;
     return input;
 }
-
+//overloading the operator << to print each domino
 ostream & operator<<(ostream & out,domino & d)
 {
     out<<d.leftdots<<"|"<<d.rightdots;
     return out;
 }
-
+//Overloading the operator == To take two dominoes and return them can either form a chain or not
 bool  operator==(domino d, domino d1)
 {
     return (d.rightdots == d1.leftdots or d.leftdots == d1.rightdots);
@@ -35,7 +35,10 @@ bool  operator==(domino d, domino d1)
 
 bool FormsDominoChain(vector <domino> v,vector <domino>& ans )
 {
+    //check every time if the vector is empty
     if (v.empty()) return true;
+    //loop on the vector and see if each domino has a match
+    //and store them in vector ans
     for (int i = 0; i < v.size(); ++i) {
         if (ans.empty()||ans.back()==v[i]){
             ans.push_back(v[i]);
