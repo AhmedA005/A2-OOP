@@ -23,6 +23,7 @@ BigReal::BigReal(string realNumber) {
     }
     if (integer.size() == 0) integer = '0';
     if (fraction.size() == 0) fraction = '0';
+    Modify(*this);
 }
 
 ostream &operator<<(ostream &out, BigReal num) {
@@ -289,4 +290,13 @@ BigReal BigReal::operator-(BigReal &other) {
     }
 
     return A;
+}
+BigReal BigReal::Modify(BigReal &other) {
+    while (other.integer[0]=='0'){
+        other.integer.erase(0,1);
+    }
+    while (other.fraction[fraction.size()-1]=='0'){
+        other.fraction.erase(fraction.size()-1,1);
+    }
+    return other;
 }
