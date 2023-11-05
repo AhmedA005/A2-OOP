@@ -8,8 +8,6 @@
 
 #include <iostream>
 #include "domino.cpp"
-#include <vector>
-#include <deque>
 using namespace std;
 
 
