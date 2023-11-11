@@ -1,0 +1,3 @@
+C:/Users/ahmed/Machine Language/cmake-build-debug/CMakeFiles/Machine_Language.dir
+C:/Users/ahmed/Machine Language/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/ahmed/Machine Language/cmake-build-debug/CMakeFiles/rebuild_cache.dir
