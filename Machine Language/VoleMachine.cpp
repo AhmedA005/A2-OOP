@@ -1,3 +1,4 @@
+
 #include "VoleMachine.h"
 
 void Machine::loadFile(const string &filename) {
@@ -68,6 +69,10 @@ void Machine::processInstruction(string &instruction) {
                 mem[ss.str()].erase(0, 2);
              mem[ss.str()] = reg[instruction[1] - '0'];
         }
+    }
+    else if (instruction[0] == '4'){
+        reg[instruction[3] - '0'] = reg[instruction[2] - '0'];
+        reg[instruction[2] - '0'] = "";
     }
     if (instruction == "C000") {
         cout << "Closing ...";
