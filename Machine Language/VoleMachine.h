@@ -10,7 +10,7 @@ class Machine {
 public:
     void loadFile(const string &filename);
     void fillMemory(const string &filename);
-    void processInstruction(string &instruction);
+    void processInstruction(string &instruction , int &jump);
 };
 
 #endif//MACHINE_LANGUAGE_VOLEMACHINE_H
