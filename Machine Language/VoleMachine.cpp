@@ -16,7 +16,7 @@ void Machine::fillMemory(const string &filename) {
     ifstream file(filename);
     if (file.is_open()) {
         string line;
-         PC = "00";
+        PC = "00";
         while (getline(file, line)) {
             mem[PC] = line;
             int pcValue = stoi(PC, nullptr, 16);// Convert the hex string to an integer
@@ -40,7 +40,8 @@ void Machine::processInstruction() {
     string ins;
     for (int i = 0; i < Lines.size(); ++i) {
         ins = Lines[i].substr(3);
-        if (ins[0] == '1') {
+        if (ins[0] == '1')
+        {
             string ss = ins.substr(2, 2);
             if (ss.size() == 1) {
                 ss = "0" + ss;
@@ -50,9 +51,13 @@ void Machine::processInstruction() {
             if (mem[ss][0] == ' ')
                 mem[ss].erase(0, 1);
             reg[ins[1] - '0'] = mem[ss];
-        } else if (ins[0] == '2') {
+        }
+        else if (ins[0] == '2')
+        {
             reg[ins[1] - '0'] = ins.substr(2, 2);
-        } else if (ins[0] == '3') {
+        }
+        else if (ins[0] == '3')
+        {
             if (ins.substr(2, 2) == "00") cout << "Register " << ins[1] - '0' << ": " << reg[ins[1] - '0'] << endl;
             else {
                 string ss = ins.substr(2, 2);
@@ -63,10 +68,27 @@ void Machine::processInstruction() {
                     mem[ss].erase(0, 2);
                 mem[ss] = reg[ins[1] - '0'];
             }
-        } else if (ins[0] == '4') {
+        }
+        else if (ins[0] == '4')
+        {
             reg[ins[3] - '0'] = reg[ins[2] - '0'];
             reg[ins[2] - '0'] = "";
-        } else if (ins[0] == 'B') {
+        }
+        else if(ins[0] == '5') {
+            int x = stoi(reg[ins[2] - '0'], nullptr, 16);
+            int y = stoi(reg[ins[3] - '0'], nullptr, 16);
+            int sum = x + y;
+            string s = bitset< 64 > (sum).to_string();
+            reverse(s.begin(),s.end());
+            string s2 = s.substr(0,8);
+            reverse(s2.begin(),s2.end());
+            int final = stoi(s2,0,2);
+            stringstream hex_sum;
+            hex_sum << std::hex << final;
+            string ans = hex_sum.str();
+            reg[ins[1] - '0'] = ans;
+        }
+        else if (ins[0] == 'B') {
             if (reg[0] == reg[ins[1] - '0']) {
                 string ss = ins.substr(2, 2);
                 PC = ss;
