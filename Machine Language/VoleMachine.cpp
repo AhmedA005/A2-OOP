@@ -86,6 +86,13 @@ void Machine::processInstruction() {
             stringstream hex_sum;
             hex_sum << std::hex << final;
             string ans = hex_sum.str();
+
+            while (ans.size() < 2) {
+                ans = "0" + ans;// Ensure two characters in PC
+            }
+            if(ans[1]>=97 and ans[1]<=122){
+                ans[1]-=32;
+            }
             reg[ins[1] - '0'] = ans;
         }
         else if (ins[0] == 'B') {
