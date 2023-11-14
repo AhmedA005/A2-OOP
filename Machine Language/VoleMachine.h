@@ -6,11 +6,12 @@ using namespace std;
 class Machine {
     vector<string> reg{16};
     map<string, string> mem;
+    string PC = "00";
 
 public:
     void loadFile(const string &filename);
     void fillMemory(const string &filename);
-    void processInstruction(string &instruction , int &jump);
+    void processInstruction();
 };
 
 #endif//MACHINE_LANGUAGE_VOLEMACHINE_H
