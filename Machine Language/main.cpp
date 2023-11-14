@@ -24,6 +24,7 @@ int main() {
             cin>>filename;
             filename += ".txt";
             x.loadFile(filename);
+            x.processInstruction();
         }
         else if(choice==2){}
         else if(choice==3){}
