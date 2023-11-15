@@ -63,7 +63,7 @@ void Machine::processInstruction() {
             reg.setValue(ins[1] - '0', ins.substr(2, 2));
         } else if (ins[0] == '3') {
             if (ins.substr(2, 2) == "00")
-                screen.push_back({ins[1] - '0',reg.getValue(ins[1] - '0')});
+                screen.push_back({ins[1] - '0', reg.getValue(ins[1] - '0')});
             else {
                 string ss = ins.substr(2, 2);
                 if (ss.size() == 1) {
@@ -113,7 +113,7 @@ void Machine::processInstruction() {
         }
         if (ins == "C000") {
             cout << "Closing ...\n";
-            for(int i=0;i<16;i++){
+            for (int i = 0; i < 16; i++) {
                 registers.push_back(reg.getValue(i));
             }
             return;
@@ -121,7 +121,14 @@ void Machine::processInstruction() {
     }
 }
 
-
+void Machine::displayMemory() {
+    cout << "Memory contents:" << endl;
+    for (auto p: mem.getMemory()) {
+        if (p.second.size() == 2)
+            cout << p.first << ": " << p.second << endl;
+    }
+    cout << endl;
+}
 
 const string &Memory::getMemory(const string &address) {
     return mem.at(address);
@@ -129,6 +136,10 @@ const string &Memory::getMemory(const string &address) {
 
 void Memory::setMemory(const string &address, const string &value) {
     mem[address] = value;
+}
+
+map<string, string> Memory::getMemory() const {
+    return mem;
 }
 
 const string &Register::getValue(int index) {
