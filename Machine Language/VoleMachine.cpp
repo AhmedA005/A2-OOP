@@ -1,7 +1,8 @@
 #include "VoleMachine.h"
-
+vector <string> registers;
+vector <string> memory;
 vector<string> Lines;
-
+vector <pair<int,string>> screen;
 void Machine::loadFile(const string &filename) {
     ifstream file(filename);
     fillMemory(filename);
@@ -62,7 +63,7 @@ void Machine::processInstruction() {
             reg.setValue(ins[1] - '0', ins.substr(2, 2));
         } else if (ins[0] == '3') {
             if (ins.substr(2, 2) == "00")
-                cout << "Register " << ins[1] - '0' << ": " << reg.getValue(ins[1] - '0') << endl;
+                screen.push_back({ins[1] - '0',reg.getValue(ins[1] - '0')});
             else {
                 string ss = ins.substr(2, 2);
                 if (ss.size() == 1) {
@@ -112,10 +113,15 @@ void Machine::processInstruction() {
         }
         if (ins == "C000") {
             cout << "Closing ...\n";
+            for(int i=0;i<16;i++){
+                registers.push_back(reg.getValue(i));
+            }
             return;
         }
     }
 }
+
+
 
 const string &Memory::getMemory(const string &address) {
     return mem.at(address);
