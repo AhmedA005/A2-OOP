@@ -108,7 +108,7 @@ void Machine::processInstruction() {
             }
         }
         if (ins == "C000") {
-            cout << "Closing ...";
+            cout << "Closing ...\n";
             return;
         }
     }
