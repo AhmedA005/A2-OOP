@@ -2,10 +2,25 @@
 using namespace std;
 #ifndef MACHINE_LANGUAGE_VOLEMACHINE_H
 #define MACHINE_LANGUAGE_VOLEMACHINE_H
+class Register {
+    vector<string> reg;
 
-class Machine {
-    vector<string> reg{16};
+public:
+    Register(int size);
+    const string &getValue(int index);
+    void setValue(int index, const std::string& value);
+};
+
+class Memory {
     map<string, string> mem;
+
+public:
+    const string& getMemory(const string& address);
+    void setMemory(const std::string& address, const std::string& value);
+};
+class Machine {
+    Register reg{16};
+    Memory mem;
     string PC = "00";
 
 public:
