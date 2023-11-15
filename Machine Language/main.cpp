@@ -4,9 +4,8 @@ using namespace std;
 int main() {
     vector <string> operations = {
             "Load a new program",
-            "Display the PC",
-            "Display the IR",
             "Display the memory",
+            "Display the registers",
             "Display the final screen"};
 
     for (int i = 0; i < operations.size(); ++i) {
@@ -27,9 +26,17 @@ int main() {
             x.processInstruction();
         }
         else if(choice==2){}
-        else if(choice==3){}
-        else if(choice==4){}
-        else if(choice==5){}
+        else if(choice==3){
+
+            for (int i = 0; i < 16; ++i) {
+                cout<<"register "<<i<<": "<<registers[i]<<endl;
+            }
+        }
+        else if(choice==4){
+            for(int i=0;i<screen.size();i++){
+                cout<<"Register "<<screen[i].first<<": "<<screen[i].second<<endl;
+            }
+        }
         else if(choice==0){
             return 0;
         }
