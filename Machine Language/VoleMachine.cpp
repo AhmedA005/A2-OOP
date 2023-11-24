@@ -1,3 +1,6 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 #include "VoleMachine.h"
 vector <string> registers;
 vector <string> memory;
@@ -63,7 +66,7 @@ void Machine::processInstruction() {
             reg.setValue(ins[1] - '0', ins.substr(2, 2));
         } else if (ins[0] == '3') {
             if (ins.substr(2, 2) == "00")
-                screen.push_back({ins[1] - '0', reg.getValue(ins[1] - '0')});
+                screen.emplace_back(make_pair(ins[1] - '0', reg.getValue(ins[1] - '0')));
             else {
                 string ss = ins.substr(2, 2);
                 if (ss.size() == 1) {
