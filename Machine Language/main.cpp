@@ -1,14 +1,17 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 #include <bits/stdc++.h>
 using namespace std;
 #include "VoleMachine.cpp"
 int main() {
-    vector<string> operations = {
+    string operations[4] = {
             "Load a new program",
             "Display the memory",
             "Display the registers",
             "Display the final screen"};
 
-    for (int i = 0; i < operations.size(); ++i) {
+    for (int i = 0; i < 4; ++i) {
         cout << i + 1 << " - " << operations[i] << endl;
     }
 
