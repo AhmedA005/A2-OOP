@@ -7,7 +7,7 @@ using namespace std;
 class BigReal {
     char sign;
     string integer, fraction;
-    bool isValid(string realNumber);
+    bool isValid(const string &realNumber);
 
 public:
     BigReal(double number = 0.0);
@@ -21,6 +21,6 @@ public:
     BigReal Modify(BigReal &other);
 
     friend ostream &
-    operator<<(ostream &out, BigReal num);
+    operator<<(ostream &out, const BigReal &num);
 };
 #endif//BIGREAL_BIGREAL_H
