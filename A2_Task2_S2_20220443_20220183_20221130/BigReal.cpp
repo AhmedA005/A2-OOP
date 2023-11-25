@@ -6,12 +6,12 @@
 #include <regex>
 using namespace std;
 #include "BigReal.h"
-bool BigReal::isValid(const string &realNumber) {
+bool BigReal::isValid(const string &realNumber) { // added const and &, I changed it in the header file too !
     if (regex_match(realNumber,regex("[+-]?\\d*.?\\d+")))
         return true;
     else return false;
 }
-BigReal::BigReal(string realNumber):sign{} {
+BigReal::BigReal(string realNumber):sign{} { // intialize sign in case the condition was false
     if (isValid(realNumber)) {
         if (realNumber[0] == '-' || realNumber[0] == '+') {
             sign = realNumber[0];
@@ -30,7 +30,7 @@ BigReal::BigReal(string realNumber):sign{} {
     Modify(*this);
 }
 
-ostream &operator<<(ostream &out, const BigReal &num) {
+ostream &operator<<(ostream &out, const BigReal &num) { // added const and &, I changed it in the header file too !
     out << num.sign << num.integer << '.' << num.fraction;
     return out;
 }
@@ -107,7 +107,7 @@ bool BigReal::operator<(BigReal &other) {
         for (int i = 0; i < fraction.size(); ++i) {
             if (fraction[i] < other.fraction[i])
                 return false;
-            else if(fraction[i] > other.fraction[i])
+            else if(fraction[i] > other.fraction[i]) // we subtracted '0' from both sides so it is useless 
                 return true;
         }
     }
