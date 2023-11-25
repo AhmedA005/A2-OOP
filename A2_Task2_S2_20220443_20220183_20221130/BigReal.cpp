@@ -1,13 +1,17 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
+
 #include <iostream>
 #include <regex>
 using namespace std;
 #include "BigReal.h"
-bool BigReal::isValid(string realNumber) {
+bool BigReal::isValid(const string &realNumber) {
     if (regex_match(realNumber,regex("[+-]?\\d*.?\\d+")))
         return true;
     else return false;
 }
-BigReal::BigReal(string realNumber) {
+BigReal::BigReal(string realNumber):sign{} {
     if (isValid(realNumber)) {
         if (realNumber[0] == '-' || realNumber[0] == '+') {
             sign = realNumber[0];
@@ -26,7 +30,7 @@ BigReal::BigReal(string realNumber) {
     Modify(*this);
 }
 
-ostream &operator<<(ostream &out, BigReal num) {
+ostream &operator<<(ostream &out, const BigReal &num) {
     out << num.sign << num.integer << '.' << num.fraction;
     return out;
 }
@@ -76,16 +80,16 @@ bool BigReal::operator<(BigReal &other) {
 
     if (sign == '+' and other.sign == '+') {
         for (int i = 0; i < integer.size(); ++i) {
-            if (integer[i] - '0' > other.integer[i] - '0')
+            if (integer[i] > other.integer[i])
                 return false;
-            else if(integer[i] - '0' < other.integer[i] - '0')
+            else if (integer[i] < other.integer[i])
                 return true;
         }
 
         for (int i = 0; i < fraction.size(); ++i) {
-            if (fraction[i] - '0' > other.fraction[i] - '0')
+            if (fraction[i]  > other.fraction[i])
                 return false;
-            else if(fraction[i] - '0' < other.fraction[i] - '0')
+            else if(fraction[i] < other.fraction[i])
                 return true;
 
         }
@@ -94,16 +98,16 @@ bool BigReal::operator<(BigReal &other) {
     if (sign == '-' and other.sign == '-') {
 
         for (int i = 0; i < integer.size(); ++i) {
-            if (integer[i] - '0' < other.integer[i] - '0')
+            if (integer[i] < other.integer[i])
                 return false;
-            else if(integer[i] - '0' > other.integer[i] - '0')
+            else if(integer[i] > other.integer[i])
                 return true;
         }
 
         for (int i = 0; i < fraction.size(); ++i) {
-            if (fraction[i] - '0' < other.fraction[i] - '0')
+            if (fraction[i] < other.fraction[i])
                 return false;
-            else if(fraction[i] - '0' > other.fraction[i] - '0')
+            else if(fraction[i] > other.fraction[i])
                 return true;
         }
     }
